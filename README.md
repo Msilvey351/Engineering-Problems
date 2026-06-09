@@ -2,10 +2,40 @@
 Engineering Problems I have faced and the code used to solve them
 
 
-**Manifold_torque**
-Uses calculates the torque needed to deform or break the thread on a cylindrical tube with a 1/2" NPT thread. 
-It takes inputs of material ultimate tensile strength, inner and outer (nominal) tube diameters, length of thread engaged (ie, length of thread to the break point), and a stress concentration factor Kt (calculation for Kt done seperately). 
-It plots the torque vs the stress on the break point, highlighting the region where the stress is greater than shear strength and material will deform. 
+**Manifold_Torque**
+
+Calculates worst-case torsional shear stress at the first thread root of a 1/2" NPT threaded hollow tube. Thread geometry is taken from ASME B1.20.1. 
+
+Valid for 1/2" NPT threads only.
+
+## What it does
+
+Given a tube geometry and applied torque, it computes:
+
+- Thread root diameter and remaining wall thickness accounting for NPT taper
+- Polar moment of inertia at the reduced (thread root) cross-section
+- Peak shear stress with stress concentration applied: tau = Kt * T * r_root / J_root
+- A plot of shear stress vs torque with a shear strength limit
+
+
+## Usage
+Just adjust parameters and run
+
+## Inputs
+Adjust parameters based on manifold
+
+Kt = 3.02 is calculated based on a radial notch with angle 60 degrees and radius 0.01mm. This has been found to be accurate from testing
+
+
+## Thread Geometry
+The 1/2" NPT constants are hardcoded from ASME B1.20.1. See standard for specific thread dimensions. 
+The taper means the effective thread depth increases along the engagement length. The worst case is always at the small end, so that is what gets reported. Change if the thread snaps at an earlier point
+
+## Limitations
+- Hardcoded for 1/2" NPT only. Other thread sizes would need their own constants.
+- Shear strength estimate of 0.6 * UTS is approximate
+
+
 
 
 **Induction_Coil**
