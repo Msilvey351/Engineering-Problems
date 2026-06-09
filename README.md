@@ -79,3 +79,59 @@ I_peak is passed to the field solver.
 
 
 
+
+**Damped Spring**
+
+A Python simulation of a mass-spring-damper system
+using SciPy's ODE solver. Computes and plots the displacement and velocity of a mass over time given a set of physical parameters and initial conditions.
+
+---
+
+## Physics Background
+
+The system follows the second-order equation of motion:
+
+    m·ẍ + c·ẋ + k·x = 0
+
+Where:
+- `x` — displacement (m)
+- `ẋ` — velocity (m/s)
+- `ẍ` — acceleration (m/s²)
+- `m` — mass (kg)
+- `c` — damping coefficient (N·s/m)
+- `k` — spring constant (N/m)
+
+This is solved as a system of two first-order ODEs by treating displacement
+and velocity as separate state variables.
+
+### Damping Behaviour
+
+The system's behaviour is determined by the **damping ratio** `ζ = c / (2√(mk))`:
+
+| Damping Ratio | Behaviour |
+|---|---|
+| `ζ < 1` | Underdamped — oscillatory decay |
+| `ζ = 1` | Critically damped — fastest return to equilibrium |
+| `ζ > 1` | Overdamped — slow return, no oscillation |
+
+
+## Configuration
+
+All system parameters and initial conditions are defined at the top of the file
+and can be freely adjusted:
+
+    # System Parameters
+    m = 1.0    # Mass (kg)
+    k = 2.0    # Spring constant (N/m)
+    c = 0.5    # Damping coefficient (N·s/m)
+
+    # Initial Conditions
+    x0 = 1.0   # Initial displacement (m)
+    v0 = 0.0   # Initil velocity (m/s)
+
+---
+
+## Output
+
+Running the scrit prints the system's physical properties to the console and produces a plot of velocity and displacement
+
