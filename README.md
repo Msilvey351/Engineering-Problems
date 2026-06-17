@@ -27,7 +27,7 @@ Just adjust parameters and run.
 
 Adjust parameters based on manifold.
 
-Kt = 3.02 is calculated based on a radial notch with angle 60 degrees and radius 0.01mm. This has been found to be accurate from testing.
+Kt = 3.02 is calculated based on a radial notch with angle 60 degrees and radius 0.01mm. Since steel is a ductile material, it tends to deform and distribute the stress safely around the stress concentration point, so the Kt is a very conservative estimate. The corrected Kf for repeated stresses should be calculated by the notch sentivity Kf = 1+q(Kt-1). 
 
 ### Thread Geometry
 
